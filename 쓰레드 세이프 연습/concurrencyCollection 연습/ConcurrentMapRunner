@@ -1,0 +1,19 @@
+package concorrency;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.LongAdder;
+
+public class ConcurrentMapRunner {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ConcurrentMap<Character, LongAdder> occurances = new ConcurrentHashMap();
+		String str = "ABCD ABCD ABCD";
+		
+		for(Character characters: str.toCharArray()) {
+			occurances.computeIfAbsent(characters, ch -> new LongAdder()).increment();
+		}
+		System.out.println(occurances);
+	}
+}
